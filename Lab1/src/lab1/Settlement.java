@@ -5,7 +5,7 @@ public class Settlement {
     private String name;
     private int population;
     private double area;
-    private String type;
+    private SettlementType type;
     private int foundedYear;
     private double latitude;
     private double longitude;
@@ -20,7 +20,7 @@ public class Settlement {
         this.name = "Невідомо";
         this.population = 0;
         this.area = 0.0;
-        this.type = "село";
+        this.type = SettlementType.VILLAGE;
         this.foundedYear = 2000;
         this.latitude = 0.0;
         this.longitude = 0.0;
@@ -32,7 +32,7 @@ public class Settlement {
         this.name = name;
         this.population = population;
         this.area = area;
-        this.type = type;
+        this.type = SettlementType.fromString(type);
         this.foundedYear = foundedYear;
         this.latitude = latitude;
         this.longitude = longitude;
@@ -44,7 +44,7 @@ public class Settlement {
         this.name = name;
         this.population = population;
         this.area = 0.0;
-        this.type = "місто";
+        this.type = SettlementType.TOWN;
         this.foundedYear = 2000;
         this.latitude = 0.0;
         this.longitude = 0.0;
@@ -80,11 +80,11 @@ public class Settlement {
     }
 
     public String getType() {
-        return type;
+        return type.getDescription();
     }
 
     public void setType(String type) {
-        this.type = type;
+        this.type = SettlementType.fromString(type);
     }
 
     public int getFoundedYear() {

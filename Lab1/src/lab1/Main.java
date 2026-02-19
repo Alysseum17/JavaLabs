@@ -85,8 +85,13 @@ public class Main {
         System.out.println("========================================\n");
 
         Settlement larger = Settlement.getLargerByPopulation(settlements[0], settlements[2]);
-        System.out.println("Більший за населенням між Києвом та Одесою: "
-                + larger.getName() + " (" + larger.getPopulation() + " осіб)");
+        if (larger != null) {
+            System.out.println("Більший за населенням: " + larger.getName() +
+                    " (" + larger.getPopulation() + " осіб)");
+        } else {
+            System.out.println("Міста " + settlements[0].getName() + " та " + settlements[2].getName() +
+                    " мають однакове населення (" + settlements[0].getPopulation() + " осіб).");
+        }
 
         double distance = Settlement.calculateDistance(settlements[0], settlements[1]);
         System.out.printf("Відстань Київ — Львів (по прямій): %.2f км%n", distance);

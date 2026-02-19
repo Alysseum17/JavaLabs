@@ -10,7 +10,7 @@ public class Crossroad {
     private double latitude;
     private double longitude;
     private boolean regulated;
-    private int id;
+    private final int id;
 
     private static int nextId = 1;
     private static int totalCrossroads = 0;

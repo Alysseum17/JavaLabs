@@ -9,7 +9,7 @@ public class Settlement {
     private int foundedYear;
     private double latitude;
     private double longitude;
-    private int id;
+    private final int id;
 
     private static int nextId = 1;
     private static int totalSettlements = 0;
@@ -172,10 +172,12 @@ public class Settlement {
     }
 
     public static Settlement getLargerByPopulation(Settlement a, Settlement b) {
-        if (a.getPopulation() >= b.getPopulation()) {
+        if (a.getPopulation() > b.getPopulation()) {
             return a;
+        } else if (b.getPopulation() > a.getPopulation()) {
+            return b;
         }
-        return b;
+        return null;
     }
 
     public static double calculateDistance(Settlement a, Settlement b) {

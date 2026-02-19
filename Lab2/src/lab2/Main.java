@@ -6,11 +6,10 @@ public class Main {
 
     public static void main(String[] args) {
 
-        System.out.println("╔══════════════════════════════════════════════════════╗");
-        System.out.println("║  ЗАВДАННЯ 1: Агрегування, спадкування, поліморфізм  ║");
-        System.out.println("╚══════════════════════════════════════════════════════╝\n");
+        System.out.println("========================================");
+        System.out.println("ЗАВДАННЯ 1: Агрегування, спадкування, поліморфізм");
+        System.out.println("========================================\n");
 
-        // --- Створення населених пунктів ---
         Settlement kyiv = new Settlement("Київ", 2967000, 847.66, "місто",
                 482, 50.4501, 30.5234);
         Settlement lviv = new Settlement("Львів", 717000, 182.01, "місто",
@@ -116,9 +115,9 @@ public class Main {
         c6.setMainRoad("Саксаганського");
         System.out.println("Після зміни — тип: " + c6.getPriorityType());
 
-        System.out.println("\n╔══════════════════════════════════════════════════════╗");
-        System.out.println("║  ЗАВДАННЯ 2: Вкладений клас та локальний клас        ║");
-        System.out.println("╚══════════════════════════════════════════════════════╝\n");
+        System.out.println("========================================");
+        System.out.println("ЗАВДАННЯ 2: Вкладений клас та локальний клас");
+        System.out.println("========================================\n");
 
         System.out.println("--- Вкладений клас Crossroad.TrafficStats ---\n");
         System.out.println("TrafficStats — static nested class всередині Crossroad.");
@@ -139,9 +138,9 @@ public class Main {
         System.out.println("Демонстрація (виклик printInfo):\n");
         c1.printInfo();
 
-        System.out.println("\n╔══════════════════════════════════════════════════════╗");
-        System.out.println("║  ЗАВДАННЯ 3: Операції з масивами                    ║");
-        System.out.println("╚══════════════════════════════════════════════════════╝\n");
+        System.out.println("========================================");
+        System.out.println("ЗАВДАННЯ 3: Операції з масивами");
+        System.out.println("========================================\n");
 
         Crossroad[] allCrossroads = kyiv.getCrossroads();
 

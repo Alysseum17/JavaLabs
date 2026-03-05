@@ -105,7 +105,7 @@ public class SettlementMap {
         return result;
     }
 
-    public Map<String, Settlement> sortMultiAnonymous() {
+    public Map<String, Settlement> sortAnonymous() {
         return sortedMap(new Comparator<Settlement>() {
             @Override
             public int compare(Settlement a, Settlement b) {
@@ -116,7 +116,7 @@ public class SettlementMap {
         });
     }
 
-    public Map<String, Settlement> sortMultiLambda() {
+    public Map<String, Settlement> sortLambda() {
         return sortedMap((a, b) -> {
             int cmp = a.getType().compareTo(b.getType());
             if (cmp != 0) return cmp;
@@ -124,7 +124,7 @@ public class SettlementMap {
         });
     }
 
-    public Map<String, Settlement> sortMultiMethodRef() {
+    public Map<String, Settlement> sortMethodRef() {
         return sortedMap(
                 Comparator.comparing(Settlement::getType)
                         .thenComparing(

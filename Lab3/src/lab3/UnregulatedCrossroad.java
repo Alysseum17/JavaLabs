@@ -1,5 +1,8 @@
 package lab3;
 
+import lab3.Crossroad;
+import lab3.PriorityType;
+
 public class UnregulatedCrossroad extends Crossroad {
 
     private PriorityType priorityType;

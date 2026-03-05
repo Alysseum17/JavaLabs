@@ -141,4 +141,19 @@ public class SettlementCollection {
                     s.getName(), s.getPopulation(), s.getArea(), s.getCrossroadCount());
         }
     }
+
+    public static Settlement compareInt( Settlement a, Settlement b, ToIntFunction<Settlement> extractor) {
+        int valA = extractor.applyAsInt(a);
+        int valB = extractor.applyAsInt(b);
+        if (valA > valB) return a;
+        if (valA < valB) return b;
+        return null;
+    }
+    public static Settlement compareDouble( Settlement a, Settlement b, ToDoubleFunction<Settlement> extractor) {
+        double valA = extractor.applyAsDouble(a);
+        double valB = extractor.applyAsDouble(b);
+        if (valA > valB) return a;
+        if (valA < valB) return b;
+        return null;
+    }
 }

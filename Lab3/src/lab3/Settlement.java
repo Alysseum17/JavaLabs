@@ -1,5 +1,8 @@
 package lab3;
 
+import lab3.Crossroad;
+import lab3.SettlementType;
+
 public class Settlement {
 
     private String name;
@@ -9,9 +12,9 @@ public class Settlement {
     private int foundedYear;
     private double latitude;
     private double longitude;
-    private int id;
+    private final int id;
 
-    private Crossroad[] crossroads;
+    private final Crossroad[] crossroads;
     private int crossroadCount;
     private static final int MAX_CROSSROADS = 100;
 
@@ -172,11 +175,28 @@ public class Settlement {
     }
 
     public void increasePopulation(int amount) {
-        if (amount > 0) population += amount;
+        if (amount > 0) {
+            population += amount;
+            System.out.println(name + ": населення збільшено на " + amount
+                    + ". Нове населення: " + population);
+        }
+    }
+
+    public void increasePopulation(double percent) {
+        int increase = (int) (population * percent / 100.0);
+        population += increase;
+        System.out.println(name + ": населення збільшено на " + percent + "% (+"
+                + increase + "). Нове населення: " + population);
     }
 
     public void decreasePopulation(int amount) {
-        if (amount > 0 && population - amount >= 0) population -= amount;
+        if (amount > 0 && population - amount >= 0) {
+            population -= amount;
+            System.out.println(name + ": населення зменшено на " + amount
+                    + ". Нове населення: " + population);
+        } else {
+            System.out.println("Помилка: неможливо зменшити населення " + name);
+        }
     }
 
     public int getAge(int currentYear) {
@@ -184,9 +204,9 @@ public class Settlement {
     }
 
     public void printInfo() {
-        System.out.println("╔══════════════════════════════════════════╗");
+        System.out.println("========================================");
         System.out.println("  Населений пункт [ID=" + id + "]: " + name);
-        System.out.println("╚══════════════════════════════════════════╝");
+        System.out.println("========================================");
         System.out.println("Тип: " + type);
         System.out.println("Населення: " + population + " осіб");
         System.out.printf("Площа: %.2f км²%n", area);
@@ -215,16 +235,21 @@ public class Settlement {
     }
 
     public static Settlement getLargerByPopulation(Settlement a, Settlement b) {
-        return (a.getPopulation() >= b.getPopulation()) ? a : b;
+        if (a.getPopulation() > b.getPopulation()) {
+            return a;
+        } else if (b.getPopulation() > a.getPopulation()) {
+            return b;
+        }
+        return null;
     }
 
     public static double calculateDistance(Settlement a, Settlement b) {
         double dLat = Math.toRadians(b.getLatitude() - a.getLatitude());
         double dLon = Math.toRadians(b.getLongitude() - a.getLongitude());
         double x = Math.sin(dLat / 2) * Math.sin(dLat / 2)
-                 + Math.cos(Math.toRadians(a.getLatitude()))
-                 * Math.cos(Math.toRadians(b.getLatitude()))
-                 * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+                + Math.cos(Math.toRadians(a.getLatitude()))
+                * Math.cos(Math.toRadians(b.getLatitude()))
+                * Math.sin(dLon / 2) * Math.sin(dLon / 2);
         double c = 2 * Math.atan2(Math.sqrt(x), Math.sqrt(1 - x));
         return EARTH_RADIUS_KM * c;
     }

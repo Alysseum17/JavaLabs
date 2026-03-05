@@ -42,9 +42,9 @@ public class Main {
         c3.setStats(new Crossroad.TrafficStats(500, 2, 400));
         lviv.addCrossroad(c3);
 
-        System.out.println("╔═══════════════════════════════════════════════════════════╗");
-        System.out.println("║  ЗАВДАННЯ 1: Collection — пошук, фільтрація, середнє     ║");
-        System.out.println("╚═══════════════════════════════════════════════════════════╝");
+        System.out.println("------------------------------------------------------------");
+        System.out.println("ЗАВДАННЯ 1: Collection — пошук, фільтрація, середнє");
+        System.out.println("------------------------------------------------------------");
 
         SettlementCollection collection = new SettlementCollection();
         collection.add(kyiv);
@@ -94,6 +94,20 @@ public class Main {
                 Comparator.comparingInt(Settlement::getFoundedYear));
         SettlementCollection.printList(byAge, "За віком (найстаріші першими)");
 
+        if(SettlementCollection.compareInt(kyiv, lviv, Settlement::getPopulation) == kyiv) {
+            System.out.println("\nКиїв більший за Львів за населенням");
+        } else if(SettlementCollection.compareInt(kyiv, lviv, Settlement::getPopulation) == lviv) {
+            System.out.println("Львів більший за Київ за населенням");
+        }else {
+            System.out.println("Київ і Львів однакові за населенням");
+        }
+        if(SettlementCollection.compareDouble(kyiv, lviv, Settlement::getArea) == kyiv) {
+            System.out.println("Київ більший за Львів за площею");
+        } else if(SettlementCollection.compareDouble(kyiv, lviv, Settlement::getArea) == lviv) {
+            System.out.println("Львів більший за Київ за площею");
+        }else {
+            System.out.println("Київ і Львів однакові за площею");
+        }
         System.out.println("\n--- Фільтрація ---");
 
         List<Settlement> bigCities = collection.filter(s -> s.getPopulation() > 500_000);
@@ -119,9 +133,9 @@ public class Main {
         double avgCrossroads = collection.averageInt(Settlement::getCrossroadCount);
         System.out.printf("Середня к-ть перехресть: %.2f%n", avgCrossroads);
 
-        System.out.println("\n╔═══════════════════════════════════════════════════════════╗");
-        System.out.println("║  ЗАВДАННЯ 2: Сортування — 3 способи                      ║");
-        System.out.println("╚═══════════════════════════════════════════════════════════╝");
+        System.out.println("\n-----------------------------------------------------------");
+        System.out.println("ЗАВДАННЯ 2: Сортування — 3 способи");
+        System.out.println("-----------------------------------------------------------");
 
         System.out.println("\nКритерій: за населенням (зростання)\n");
 
@@ -137,9 +151,9 @@ public class Main {
         System.out.println("\nДодатково — за назвою (Comparator.comparing + method ref):");
         SettlementCollection.printList(collection.sortByNameMethodRef(), "За назвою");
 
-        System.out.println("\n╔═══════════════════════════════════════════════════════════╗");
-        System.out.println("║  ЗАВДАННЯ 3: Map — фільтрація, видалення, reduction       ║");
-        System.out.println("╚═══════════════════════════════════════════════════════════╝");
+        System.out.println("\n-----------------------------------------------------------");
+        System.out.println("ЗАВДАННЯ 3: Map — фільтрація, видалення, reduction");
+        System.out.println("-----------------------------------------------------------");
 
         SettlementMap map = new SettlementMap(
                 List.of(kyiv, lviv, odesa, kharkiv, irpin, kovalivka, myrhorod, opishnya));
@@ -190,21 +204,21 @@ public class Main {
         int totalCrossroads = map.sumInt(Settlement::getCrossroadCount);
         System.out.println("Загальна к-ть перехресть: " + totalCrossroads);
 
-        System.out.println("\n╔═══════════════════════════════════════════════════════════╗");
-        System.out.println("║  ЗАВДАННЯ 4: Сортування за кількома ознаками              ║");
-        System.out.println("╚═══════════════════════════════════════════════════════════╝");
+        System.out.println("\n-----------------------------------------------------------");
+        System.out.println("ЗАВДАННЯ 4: Сортування за кількома ознаками");
+        System.out.println("-----------------------------------------------------------");
 
         System.out.println("\nКритерій: спочатку за типом (село → місто),");
         System.out.println("потім за населенням (спадання).\n");
 
         System.out.println("Спосіб 1: Анонімний клас");
-        SettlementMap.printMap(map.sortMultiAnonymous(), "Анонімний клас");
+        SettlementMap.printMap(map.sortAnonymous(), "Анонімний клас");
 
         System.out.println("\nСпосіб 2: Лямбда-вираз");
-        SettlementMap.printMap(map.sortMultiLambda(), "Лямбда");
+        SettlementMap.printMap(map.sortLambda(), "Лямбда");
 
         System.out.println("\nСпосіб 3: Comparator.comparing().thenComparing()");
-        SettlementMap.printMap(map.sortMultiMethodRef(), "Method ref chain");
+        SettlementMap.printMap(map.sortMethodRef(), "Method ref chain");
 
     }
 }

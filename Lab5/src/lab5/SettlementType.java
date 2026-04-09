@@ -21,6 +21,7 @@ public enum SettlementType {
             if (t.description.equalsIgnoreCase(s) || t.name().equalsIgnoreCase(s)) return t;
         }
         return VILLAGE;
+    }
 
     @Override
     public String toString() {
